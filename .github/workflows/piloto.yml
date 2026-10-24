@@ -5,6 +5,11 @@ on:
   schedule:
     - cron: '23 21 * * 1-5'
   workflow_dispatch:
+    inputs:
+      test_email:
+        description: Enviar un correo de prueba al destinatario del piloto
+        type: boolean
+        default: false
 permissions:
   contents: write
   pages: write
@@ -26,7 +31,7 @@ jobs:
       - name: Descargar y analizar datos
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-2.5-flash' }}
         run: python scripts/update.py
       - name: Enviar informe privado si está configurado
         if: github.event_name != 'push'
@@ -37,6 +42,7 @@ jobs:
           MAIL_TO: ${{ secrets.MAIL_TO }}
           MAIL_FROM: ${{ secrets.MAIL_FROM }}
           MAIL_FREQUENCY: weekly
+          MAIL_TEST: ${{ inputs.test_email && 'true' || 'false' }}
         run: python scripts/mail.py
       - name: Conservar datos y estado
         run: |

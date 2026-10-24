@@ -35,6 +35,8 @@ El sistema envía únicamente datos macro públicos al proveedor. La IA conserva
 
 ## Activar correo privado
 
+Para Gmail, basta configurar `SMTP_USER` y `SMTP_PASSWORD`; host predeterminado `smtp.gmail.com`, puerto 587. Si `MAIL_TO` está vacío, se envía exclusivamente a la misma cuenta `SMTP_USER`. `MAIL_FROM` vacío también utiliza esa cuenta. La prueba de conexión se inicia en Actions → Actualizar y publicar piloto → Run workflow → `test_email`. Esa prueba envía un aviso de conexión, no un informe económico ni una confirmación de futuras ejecuciones. No evita los controles de calidad de los informes reales.
+
 Guardar como secretos de Actions `SMTP_HOST`, `SMTP_USER`, `SMTP_PASSWORD`, `MAIL_TO` y opcionalmente `MAIL_FROM`. SMTP utiliza STARTTLS, puerto 587. No usar la contraseña normal de una cuenta personal. Si el proveedor requiere una contraseña de aplicación, su creación corresponde al titular de la cuenta.
 
 El piloto está configurado para el resumen de los viernes. El envío omite los push y no se ejecuta si faltan secretos, hay errores de descarga o hay fuentes conservadas/con rezago excesivo. `automation-state.json` evita repetir el mismo informe en condiciones normales; SMTP no garantiza entrega exactamente una vez ante fallas entre el envío y la persistencia del estado.

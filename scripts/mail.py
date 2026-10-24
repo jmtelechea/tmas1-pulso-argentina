@@ -12,9 +12,20 @@ from zoneinfo import ZoneInfo
 ROOT = Path(__file__).resolve().parents[1]
 
 def main():
-    names = ('SMTP_HOST', 'SMTP_USER', 'SMTP_PASSWORD', 'MAIL_TO')
+    names = ('SMTP_USER', 'SMTP_PASSWORD')
     if not all(os.environ.get(k) for k in names):
-        print('Correo no activado: faltan secretos SMTP o destinatario.')
+        print('Correo no activado: falta la cuenta SMTP o su contraseña de aplicación.')
+        return
+    if os.environ.get('MAIL_TEST') == 'true':
+        msg = EmailMessage()
+        msg['Subject'] = 'T+1 | Prueba de conexión del piloto'
+        msg['From'] = os.environ.get('MAIL_FROM') or os.environ['SMTP_USER']
+        msg['To'] = os.environ.get('MAIL_TO') or os.environ['SMTP_USER']
+        msg.set_content('El piloto T+1 pudo conectarse al servicio de correo desde GitHub Actions.\n\n'
+                        'Este mensaje prueba la conexión; no confirma una ejecución programada ni la calidad de los datos.\n\n'
+                        'Web: https://jmtelechea.github.io/tmas1-pulso-argentina/')
+        deliver(msg)
+        print('Correo de prueba aceptado por el servidor SMTP.')
         return
     data = json.loads((ROOT / 'public/data.json').read_text(encoding='utf-8'))
     # No enviar informes de una descarga fallida ni contenido solo de referencia.
@@ -37,20 +48,24 @@ def main():
         return
     msg = EmailMessage()
     msg['Subject'] = f'T+1 | Pulso económico · {now:%d/%m/%Y}'
-    msg['From'] = os.environ.get('MAIL_FROM', os.environ['SMTP_USER'])
-    msg['To'] = os.environ['MAIL_TO']
+    msg['From'] = os.environ.get('MAIL_FROM') or os.environ['SMTP_USER']
+    msg['To'] = os.environ.get('MAIL_TO') or os.environ['SMTP_USER']
     blocks = ['T+1 · Piloto privado', data['report']['label']]
     for s in data['report']['sections']:
         blocks.extend([s['title'], s['fact'], s['reading'], 'Límites: ' + s['limit']])
     blocks.extend(['Fuentes y períodos:', *[f'{s["title"]}: {s["data"][-1]["date"]} · {s["url"]}' for s in data['series'].values()]])
     msg.set_content('\n\n'.join(blocks))
-    with smtplib.SMTP(os.environ['SMTP_HOST'], int(os.environ.get('SMTP_PORT', '587')), timeout=30) as smtp:
-        smtp.starttls(context=ssl.create_default_context())
-        smtp.login(os.environ['SMTP_USER'], os.environ['SMTP_PASSWORD'])
-        smtp.send_message(msg)
+    deliver(msg)
     # Persistir antes de publicar el resultado del workflow. SMTP no ofrece exactly-once.
     state_file.write_text(json.dumps({'mail_key': key, 'sent_at': now.isoformat()}), encoding='utf-8')
     print('Informe enviado al destinatario configurado.')
+
+def deliver(msg):
+    host = os.environ.get('SMTP_HOST') or 'smtp.gmail.com'
+    with smtplib.SMTP(host, int(os.environ.get('SMTP_PORT') or '587'), timeout=30) as smtp:
+        smtp.starttls(context=ssl.create_default_context())
+        smtp.login(os.environ['SMTP_USER'], os.environ['SMTP_PASSWORD'])
+        smtp.send_message(msg)
 
 if __name__ == '__main__':
     main()
