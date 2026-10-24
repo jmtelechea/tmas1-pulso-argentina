@@ -65,8 +65,12 @@ def download(key):
         url = 'https://api.bcra.gob.ar/estadisticas/v4.0/Monetarias/5?' + urlencode({'limit': 1000})
         raw = get_json(url)
         block = raw['results'][0]
-        description = block.get('descripcion', title)
-        if 'cambio' not in description.lower():
+        catalog = get_json('https://api.bcra.gob.ar/estadisticas/v4.0/Monetarias')
+        metadata = next(r for r in catalog['results'] if r.get('idVariable') == 5)
+        description = metadata['descripcion']
+        if (block.get('idVariable') != 5 or 'mayorista' not in description.lower()
+                or 'pesos' not in metadata.get('unidadExpresion', '').lower()
+                or metadata.get('periodicidad') != 'D'):
             raise ValueError('Metadatos cambiarios inesperados')
         points = [{'date': p['fecha'], 'value': p['valor']} for p in block['detalle'] if p.get('valor') is not None]
         points.sort(key=lambda p: p['date'])
@@ -81,7 +85,7 @@ def download(key):
         if not raw.get('data') or field.get('id', sid) != sid:
             raise ValueError('Serie o metadatos inesperados')
         reported_units = field.get('units', '')
-        if key == 'ipc' and reported_units and 'porcent' not in reported_units.lower():
+        if key == 'ipc' and reported_units and not any(t in reported_units.lower() for t in ('porcent', 'intermensual')):
             raise ValueError('Unidad IPC inesperada: revisar conversión')
         points = [{'date': row[0][:10], 'value': row[1]} for row in raw['data'] if row[1] is not None]
     validate(points, key)
