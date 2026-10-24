@@ -1,0 +1,30 @@
+{
+  "fingerprint": "1e1f5eb79e0d63ec5288a7cc5a7c7aaa66d75fb3aefb7b3e2e994540f8eef72a",
+  "generated_at": "2026-10-24T23:41:54.792Z",
+  "sections": [
+    {
+      "topic": "inflacion",
+      "title": "Precios: menor ritmo mensual, con rezagos en la apertura",
+      "period": "2026-08-01",
+      "fact": "El IPC nacional varió 1,66% mensual en 2026-08. La diferencia frente al mes anterior fue de -0,45 puntos porcentuales. La variación compuesta de doce meses fue de 33,54%.",
+      "reading": "La desaceleración mensual del índice general significa que los precios siguieron subiendo, aunque más despacio. La persistencia de aumentos podría involucrar indexación, costos y condiciones de demanda, pero estos datos no permiten establecer el peso de cada mecanismo.",
+      "limit": "El índice general disponible llega a agosto, mientras núcleo y regulados terminan en julio. Las fuentes consultadas advierten rezagos: no corresponde comparar la apertura de julio con el dato general de agosto como si fueran del mismo mes, ni presentar estos registros como inflación de hoy."
+    },
+    {
+      "topic": "actividad",
+      "title": "Actividad: retroceso mensual en una serie volátil",
+      "period": "2026-07-01",
+      "fact": "El EMAE desestacionalizado registró 149,65 puntos (2004=100) en 2026-07, con una variación mensual de -2,90%.",
+      "reading": "El descenso del indicador desestacionalizado señala una contracción respecto del mes previo. La serie ha mostrado oscilaciones, por lo que conviene observar la secuencia de meses y la composición sectorial antes de concluir que se consolidó una tendencia.",
+      "limit": "El último dato disponible corresponde a julio y la fuente advierte rezago. El estimador es preliminar y está sujeto a revisiones. Sin una apertura por sectores ni evidencia adicional, el movimiento no identifica por sí mismo sus causas."
+    },
+    {
+      "topic": "cambio",
+      "title": "Dólar oficial: variación nominal acotada",
+      "period": "2026-10-23",
+      "fact": "El tipo de cambio mayorista de referencia fue de $ 1.528,26 por dólar el 2026-10-23, con una variación de 0,03% frente a la observación anterior.",
+      "reading": "La cotización mayorista registró un avance nominal leve frente a la rueda anterior. Esa comparación puntual no permite deducir un cambio sostenido de tendencia ni atribuirlo a una causa específica. Para analizar el tipo de cambio real hace falta contrastar la trayectoria cambiaria con los precios relevantes.",
+      "limit": "La observación corresponde al último día hábil disponible y no a una cotización en tiempo real. No describe los mercados minorista, MEP o CCL ni mide la brecha cambiaria. Sin índices de precios de períodos compatibles no se puede inferir apreciación o depreciación real."
+    }
+  ]
+}
