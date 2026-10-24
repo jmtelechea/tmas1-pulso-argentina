@@ -126,39 +126,6 @@ def make_report(series):
             'limit': 'No representa al dólar minorista, MEP ni CCL. Tampoco permite concluir por sí solo si hay apreciación real: eso requiere comparar precios de períodos compatibles.'})
     return {'kind': 'descriptive', 'label': 'Lectura automática con reglas verificables', 'sections': sections}
 
-def generate_ai(series, report):
-    api_key = os.environ.get('GEMINI_API_KEY')
-    model = os.environ.get('GEMINI_MODEL', '')
-    if not api_key or not model:
-        return report, 'Sin credenciales: se muestra lectura descriptiva, sin atribuirle razonamiento de IA.'
-    evidence = {k: {**{a: v for a, v in s.items() if a != 'data'}, 'data': s['data'][-24:]} for k, s in series.items()}
-    prompt = ('Redactá en castellano rioplatense un análisis breve para economistas y periodistas. '
-              'No imites ni atribuyas opiniones a Juan Manuel Telechea. Usá exclusivamente la evidencia adjunta. '
-              'No inventes cifras, noticias, políticas ni causas. No calcules indicadores nuevos. '
-              'Las fechas son distintas: no describas todos los datos como contemporáneos. '
-              'Separá hechos, mecanismos posibles y límites. Reconocé datos conservados o viejos. '
-              'Devolvé JSON con sections: lista de objetos con topic (inflacion/actividad/cambio), '
-              'title, period, fact, reading y limit. Conservá fact y period exactamente como en el informe base; '
-              'solo mejorá title, reading y limit, sin cifras adicionales.\n' +
-              json.dumps({'evidence': evidence, 'base': report}, ensure_ascii=False))
-    url = f'https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent'
-    raw = get_json(url, json.dumps({'contents': [{'parts': [{'text': prompt}]}],
-        'generationConfig': {'responseMimeType': 'application/json', 'temperature': 0.2}}).encode(),
-        {'Content-Type': 'application/json', 'x-goog-api-key': api_key})
-    result = json.loads(raw['candidates'][0]['content']['parts'][0]['text'])
-    if len(result.get('sections', [])) != len(report['sections']):
-        raise ValueError('Informe IA incompleto')
-    for actual, base in zip(result['sections'], report['sections']):
-        if any(actual.get(k) != base[k] for k in ('topic', 'period', 'fact')):
-            raise ValueError('La IA modificó hechos o períodos')
-        for key in ('title', 'reading', 'limit'):
-            if not isinstance(actual.get(key), str) or not 5 <= len(actual[key]) <= 1800:
-                raise ValueError('Texto IA inválido')
-            if any(c.isdigit() for c in actual[key]):
-                raise ValueError('La interpretación introdujo cifras no validadas')
-    return {'kind': 'ai', 'label': 'Análisis generado con IA · sin revisión humana',
-            'model': model, 'sections': result['sections']}, None
-
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--offline', action='store_true')
@@ -184,12 +151,19 @@ def main():
         item['age_days'] = age
         item['lag_warning'] = age > (7 if key == 'dolar' else 75 if key.startswith('emae') else 50)
     base = make_report(series)
-    report, note = base, None
-    try:
-        report, note = generate_ai(series, base) if not args.offline else (base, 'Datos de referencia local; conexión y generación IA pendientes de activar.')
-    except Exception as exc:
-        errors.append(f'IA: salida no publicable ({type(exc).__name__}); se conserva lectura descriptiva.')
     fingerprint = hashlib.sha256(json.dumps({k:s['data'] for k,s in sorted(series.items())},sort_keys=True).encode()).hexdigest()
+    report = base
+    note = 'La lectura descriptiva se reemplaza por el análisis de la tarea en la nube cuando coincide con estos datos y supera los controles.'
+    cloud_file = OUT.parent / 'analysis.json'
+    if cloud_file.exists() and not args.offline:
+        try:
+            cloud = json.loads(cloud_file.read_text(encoding='utf-8'))
+            validate_cloud(cloud, fingerprint, base)
+            report = {'kind': 'ai', 'label': 'Análisis de ChatGPT en la nube · sin revisión humana',
+                      'sections': cloud['sections']}
+            note = 'Análisis automático de ChatGPT. Los datos tienen períodos distintos y pueden tener rezago; las hipótesis no prueban causalidad.'
+        except (ValueError, KeyError, TypeError):
+            note = 'El análisis en la nube todavía no corresponde a esta versión de los datos o no superó los controles. Se muestra lectura descriptiva.'
     payload = {'generated_at': datetime.now(timezone.utc).isoformat(), 'fingerprint': fingerprint,
         'series': series, 'errors': errors, 'report': report, 'note': note,
         'pilot': {'email_active': False, 'subscription_open': False}}
@@ -197,9 +171,31 @@ def main():
     temp = OUT.with_suffix('.tmp')
     temp.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding='utf-8')
     temp.replace(OUT)
+    evidence = {'fingerprint': fingerprint, 'generated_at': payload['generated_at'],
+        'errors': errors, 'base_report': base,
+        'series': {k:{**{a:v for a,v in s.items() if a != 'data'}, 'data':s['data'][-24:]}
+                   for k,s in series.items()}}
+    (OUT.parent / 'evidence.json').write_text(json.dumps(evidence, ensure_ascii=False, indent=2), encoding='utf-8')
     print(json.dumps({'series': len(series), 'errors': errors, 'report_kind': report['kind']}, ensure_ascii=True))
     if not series:
         raise SystemExit('No hay datos válidos para publicar')
+
+def validate_cloud(cloud, fingerprint, base):
+    if cloud.get('fingerprint') != fingerprint:
+        raise ValueError('El análisis no corresponde a estos datos')
+    stamp = datetime.fromisoformat(cloud['generated_at'].replace('Z', '+00:00'))
+    age = (datetime.now(timezone.utc) - stamp).total_seconds()
+    if not 0 <= age <= 7 * 86400:
+        raise ValueError('Fecha de generación inválida o análisis vencido')
+    if len(cloud.get('sections', [])) != len(base['sections']):
+        raise ValueError('Análisis incompleto')
+    for actual, expected in zip(cloud['sections'], base['sections']):
+        if any(actual.get(k) != expected[k] for k in ('topic', 'period', 'fact')):
+            raise ValueError('Los hechos o períodos fueron modificados')
+        for key in ('title', 'reading', 'limit'):
+            value = actual.get(key)
+            if not isinstance(value, str) or not 5 <= len(value) <= 1800 or any(c.isdigit() for c in value):
+                raise ValueError('Texto interpretativo no válido')
 
 if __name__ == '__main__':
     main()
