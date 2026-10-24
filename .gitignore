@@ -1,0 +1,7 @@
+.openai/
+.env
+__pycache__/
+qa/
+*.zip
+*.log
+config.private.json
