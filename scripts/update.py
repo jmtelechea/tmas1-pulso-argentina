@@ -164,9 +164,17 @@ def main():
             note = 'Análisis automático de ChatGPT. Los datos tienen períodos distintos y pueden tener rezago; las hipótesis no prueban causalidad.'
         except (ValueError, KeyError, TypeError):
             note = 'El análisis en la nube todavía no corresponde a esta versión de los datos o no superó los controles. Se muestra lectura descriptiva.'
+    email_verified = False
+    state_path = ROOT / 'automation' / 'cloud-state.json'
+    if state_path.exists():
+        try:
+            mail_state = json.loads(state_path.read_text(encoding='utf-8'))
+            email_verified = bool(mail_state.get('test_message_id') and mail_state.get('test_sent_at'))
+        except (ValueError, TypeError):
+            pass
     payload = {'generated_at': datetime.now(timezone.utc).isoformat(), 'fingerprint': fingerprint,
         'series': series, 'errors': errors, 'report': report, 'note': note,
-        'pilot': {'email_active': False, 'subscription_open': False}}
+        'pilot': {'email_active': email_verified, 'subscription_open': False}}
     OUT.parent.mkdir(parents=True, exist_ok=True)
     temp = OUT.with_suffix('.tmp')
     temp.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding='utf-8')

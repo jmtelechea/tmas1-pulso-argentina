@@ -70,6 +70,10 @@ document.querySelectorAll('[data-months]').forEach(b=>b.onclick=()=>{months=Numb
 const dialog=$('#newsletter-dialog');['#newsletter-open','#newsletter-details'].forEach(id=>$(id).onclick=()=>dialog.showModal());$('.close').onclick=()=>dialog.close();$('#dialog-ok').onclick=()=>dialog.close();dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});
 fetch('data.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json();}).then(data=>{
  db=data;const issues=Object.values(db.series).filter(s=>s.status!=='verified'||s.lag_warning).length;
+ if(db.pilot?.email_active){
+   document.querySelector('.newsletter-band>div:last-child>p').textContent='El envío privado del piloto superó una prueba de correo. El resumen está programado para los viernes; las suscripciones públicas todavía no están abiertas.';
+   document.querySelector('#newsletter-dialog>p:not(.eyebrow)').textContent='El piloto utiliza ChatGPT en la nube para elaborar los análisis y Gmail conectado para el envío privado. La prueba inicial de correo fue verificada; el resumen semanal está programado para los viernes.';
+ }
  $('#edition-date').textContent='Archivo consultado: '+new Date(db.generated_at).toLocaleString('es-AR',{dateStyle:'medium',timeStyle:'short',timeZone:'America/Argentina/Buenos_Aires'})+' (Argentina). Cada indicador tiene su propio período.';
  $('#load-status').textContent=issues?'Piloto con datos de referencia o fuentes con rezago. Consultá el período de cada indicador; esta vista no garantiza contener la última publicación oficial.':'Fuentes consultadas. Los indicadores tienen distintos períodos de referencia; revisá las fechas de cada tarjeta.';
  $('#load-status').classList.toggle('error',issues>0);
