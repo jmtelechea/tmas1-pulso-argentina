@@ -2,7 +2,17 @@
 
 Piloto de consulta de inflación, actividad y tipo de cambio. Web estática, datos y cálculos reproducibles y automatización para GitHub Pages + Actions. Sin dependencias de Python externas ni recursos de terceros en el navegador.
 
-## Estado inicial
+## Operación actual con ChatGPT en la nube
+
+GitHub Actions obtiene y valida las series y publica GitHub Pages a las 18:23 de Argentina los días hábiles. Una tarea programada de ChatGPT, `T+1 · Análisis y resumen semanal`, está configurada en la nube a las 19:00 de los mismos días. Su identificador es `6add41fa51848190a62d924fe49e8c03`; usa la zona `America/Buenos_Aires`. La programación utiliza la cuenta de ChatGPT, sujeta a sus límites; no una API facturada aparte.
+
+La tarea lee `automation/CLOUD.md` y `public/evidence.json`, produce `public/analysis.json` y usa Gmail conectado para el envío privado. Antes de mostrar el análisis, el proceso comprueba fingerprint, fecha, secciones, hechos y períodos. Estos controles no demuestran la corrección económica de las interpretaciones. Si el análisis no corresponde a los datos, muestra lectura descriptiva.
+
+Gmail envía una prueba inicial y luego el resumen de los viernes. La entrega y la publicación deben verificarse por sus resultados: tener una programación guardada no demuestra una ejecución exitosa. Los IDs de correo quedan en `automation/cloud-state.json`, sin publicar direcciones. Las suscripciones públicas y los productos diario/mensual no están habilitados.
+
+El workflow ya no utiliza Gemini ni SMTP. Los scripts y las indicaciones siguientes sobre SMTP describen una alternativa anterior y no forman parte de la ejecución programada actual.
+
+## Preparación inicial (histórico)
 
 - Interfaz y lecturas descriptivas disponibles.
 - Datos iniciales: copia de referencia de un dashboard previo del workspace, filtrada desde 2017. No se declara que sean los últimos datos publicados. La conexión a la API fue rechazada desde el entorno local durante la preparación.
@@ -27,13 +37,13 @@ En Settings → Pages, seleccionar GitHub Actions. El workflow publica únicamen
 
 El proceso se ejecuta a las 21:23 UTC de lunes a viernes (18:23 de Argentina); GitHub puede retrasar u omitir ejecuciones programadas. También puede iniciarse manualmente. GitHub puede desactivar programaciones de repositorios públicos inactivos; el plan gratuito no garantiza operación perpetua sin mantenimiento.
 
-## Activar IA
+## Alternativa anterior de IA (retirada del workflow)
 
-Configurar `GEMINI_API_KEY` como secreto de Actions y `GEMINI_MODEL` como variable de Actions con el identificador de un modelo que tenga cuota gratuita en la cuenta. No habilitar facturación para el piloto si se pretende evitar cargos. Verificar las condiciones y los límites actuales del proveedor.
+La versión inicial contemplaba `GEMINI_API_KEY` y `GEMINI_MODEL`. La integración se reemplazó por la tarea de ChatGPT en la nube y se eliminó la llamada a Gemini. No configurar estas variables para la operación actual.
 
 El sistema envía únicamente datos macro públicos al proveedor. La IA conserva los hechos y períodos calculados. Los controles rechazan cambios de hechos, textos incompletos y nuevas cifras en la interpretación. Es una validación limitada: no demuestra la corrección de los mecanismos económicos. Si falla, se publica lectura descriptiva identificada; no se presenta como análisis generado con IA.
 
-## Activar correo privado
+## Alternativa SMTP (fuera de la operación actual)
 
 Para Gmail, basta configurar `SMTP_USER` y `SMTP_PASSWORD`; host predeterminado `smtp.gmail.com`, puerto 587. Si `MAIL_TO` está vacío, se envía exclusivamente a la misma cuenta `SMTP_USER`. `MAIL_FROM` vacío también utiliza esa cuenta. La prueba de conexión se inicia en Actions → Actualizar y publicar piloto → Run workflow → `test_email`. Esa prueba envía un aviso de conexión, no un informe económico ni una confirmación de futuras ejecuciones. No evita los controles de calidad de los informes reales.
 
