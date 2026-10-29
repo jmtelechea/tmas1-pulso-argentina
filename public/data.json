@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-28T00:33:56.799513+00:00",
-  "fingerprint": "ac177832ea337c15ab46609056b474253921050685d7557a5a647034e633a0c3",
+  "generated_at": "2026-10-29T01:03:53.846853+00:00",
+  "fingerprint": "bb8ce37b08b1ffd713d002cb22e104d6a5a64f2eabe83efdacc553f01eeda7fe",
   "series": {
     "ipc": {
       "id": "145.3_INGNACUAL_DICI_M_38",
@@ -10,7 +10,7 @@
       "frequency": "month",
       "url": "https://apis.datos.gob.ar/series/api/series?ids=145.3_INGNACUAL_DICI_M_38&last=180&metadata=full",
       "description": "IPC. Tasa de variación mensual. Nivel General. Nacional. Base dic 2016.",
-      "checked_at": "2026-10-28T00:33:54.261116+00:00",
+      "checked_at": "2026-10-29T01:03:51.039794+00:00",
       "status": "verified",
       "data": [
         {
@@ -478,7 +478,7 @@
           "value": 0.0165920642352028
         }
       ],
-      "age_days": 88,
+      "age_days": 89,
       "lag_warning": true
     },
     "nucleo": {
@@ -489,7 +489,7 @@
       "frequency": "month",
       "url": "https://apis.datos.gob.ar/series/api/series?ids=148.3_INUCLEONAL_DICI_M_19&last=180&metadata=full&representation_mode=percent_change",
       "description": "IPC. Núcleo. Nacional. Base dic 2016. Mensual.",
-      "checked_at": "2026-10-28T00:33:54.751290+00:00",
+      "checked_at": "2026-10-29T01:03:51.650011+00:00",
       "status": "verified",
       "data": [
         {
@@ -953,7 +953,7 @@
           "value": 0.01782174844485196
         }
       ],
-      "age_days": 119,
+      "age_days": 120,
       "lag_warning": true
     },
     "regulados": {
@@ -964,7 +964,7 @@
       "frequency": "month",
       "url": "https://apis.datos.gob.ar/series/api/series?ids=148.3_IREGULANAL_DICI_M_22&last=180&metadata=full&representation_mode=percent_change",
       "description": "IPC. Regulados Nacional. Base dic 2016. Mensual.",
-      "checked_at": "2026-10-28T00:33:54.887701+00:00",
+      "checked_at": "2026-10-29T01:03:52.168632+00:00",
       "status": "verified",
       "data": [
         {
@@ -1428,7 +1428,7 @@
           "value": 0.02127177815316572
         }
       ],
-      "age_days": 119,
+      "age_days": 120,
       "lag_warning": true
     },
     "emae": {
@@ -1439,7 +1439,7 @@
       "frequency": "month",
       "url": "https://apis.datos.gob.ar/series/api/series?ids=143.3_NO_PR_2004_A_31&last=180&metadata=full",
       "description": "EMAE desestacionalizado. Base 2004",
-      "checked_at": "2026-10-28T00:33:55.663283+00:00",
+      "checked_at": "2026-10-29T01:03:52.564725+00:00",
       "status": "verified",
       "data": [
         {
@@ -2163,7 +2163,7 @@
           "value": 149.64792298456885
         }
       ],
-      "age_days": 119,
+      "age_days": 120,
       "lag_warning": true
     },
     "emae_original": {
@@ -2174,7 +2174,7 @@
       "frequency": "month",
       "url": "https://apis.datos.gob.ar/series/api/series?ids=143.3_NO_PR_2004_A_21&last=180&metadata=full",
       "description": "EMAE. Base 2004",
-      "checked_at": "2026-10-28T00:33:56.162578+00:00",
+      "checked_at": "2026-10-29T01:03:53.175379+00:00",
       "status": "verified",
       "data": [
         {
@@ -2898,7 +2898,7 @@
           "value": 151.5541509337364
         }
       ],
-      "age_days": 119,
+      "age_days": 120,
       "lag_warning": true
     },
     "dolar": {
@@ -2909,13 +2909,9 @@
       "frequency": "day",
       "url": "https://api.bcra.gob.ar/estadisticas/v4.0/Monetarias/5?limit=1000",
       "description": "Tipo de cambio mayorista de referencia",
-      "checked_at": "2026-10-28T00:33:56.793321+00:00",
+      "checked_at": "2026-10-29T01:03:53.840679+00:00",
       "status": "verified",
       "data": [
-        {
-          "date": "2022-09-14",
-          "value": 142.875
-        },
         {
           "date": "2022-09-15",
           "value": 143.1817
@@ -6911,6 +6907,10 @@
         {
           "date": "2026-10-27",
           "value": 1538.741
+        },
+        {
+          "date": "2026-10-28",
+          "value": 1538.4739
         }
       ],
       "age_days": 1,
@@ -6941,8 +6941,8 @@
       {
         "topic": "cambio",
         "title": "El movimiento del dólar oficial",
-        "period": "2026-10-27",
-        "fact": "El tipo de cambio mayorista de referencia fue de $ 1.538,74 por dólar el 2026-10-27, con una variación de -0,11% frente a la observación anterior.",
+        "period": "2026-10-28",
+        "fact": "El tipo de cambio mayorista de referencia fue de $ 1.538,47 por dólar el 2026-10-28, con una variación de -0,02% frente a la observación anterior.",
         "reading": "Esta cotización corresponde al mercado oficial mayorista. Un aumento expresa una depreciación nominal del peso frente al dólar en ese mercado.",
         "limit": "No representa al dólar minorista, MEP ni CCL. Tampoco permite concluir por sí solo si hay apreciación real: eso requiere comparar precios de períodos compatibles."
       }
