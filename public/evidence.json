@@ -1,6 +1,6 @@
 {
-  "fingerprint": "880d78743a3cc0d80e4c20b80a43c30d0db5545b5bbcae069d21e0fe210eb99b",
-  "generated_at": "2026-10-31T00:52:47.988812+00:00",
+  "fingerprint": "316b8cd12456f177ad24fb01f71aa8d6d1c3c8fa26e3798d051c925abbe0255e",
+  "generated_at": "2026-11-03T02:58:04.398403+00:00",
   "errors": [],
   "base_report": {
     "kind": "descriptive",
@@ -25,125 +25,14 @@
       {
         "topic": "cambio",
         "title": "El movimiento del dólar oficial",
-        "period": "2026-10-30",
-        "fact": "El tipo de cambio mayorista de referencia fue de $ 1.537,35 por dólar el 2026-10-30, con una variación de -0,15% frente a la observación anterior.",
+        "period": "2026-11-02",
+        "fact": "El tipo de cambio mayorista de referencia fue de $ 1.544,65 por dólar el 2026-11-02, con una variación de 0,47% frente a la observación anterior.",
         "reading": "Esta cotización corresponde al mercado oficial mayorista. Un aumento expresa una depreciación nominal del peso frente al dólar en ese mercado.",
         "limit": "No representa al dólar minorista, MEP ni CCL. Tampoco permite concluir por sí solo si hay apreciación real: eso requiere comparar precios de períodos compatibles."
       }
     ]
   },
   "series": {
-    "nucleo": {
-      "id": "148.3_INUCLEONAL_DICI_M_19",
-      "title": "IPC núcleo",
-      "unit": "fraction",
-      "source": "INDEC",
-      "frequency": "month",
-      "url": "https://apis.datos.gob.ar/series/api/series?ids=148.3_INUCLEONAL_DICI_M_19&last=180&metadata=full&representation_mode=percent_change",
-      "description": "IPC. Núcleo. Nacional. Base dic 2016. Mensual.",
-      "checked_at": "2026-10-31T00:52:45.831816+00:00",
-      "status": "verified",
-      "age_days": 122,
-      "lag_warning": true,
-      "data": [
-        {
-          "date": "2024-08-01",
-          "value": 0.041202855730913646
-        },
-        {
-          "date": "2024-09-01",
-          "value": 0.03262205751650904
-        },
-        {
-          "date": "2024-10-01",
-          "value": 0.029178168076062105
-        },
-        {
-          "date": "2024-11-01",
-          "value": 0.027148338562957175
-        },
-        {
-          "date": "2024-12-01",
-          "value": 0.03197281506150129
-        },
-        {
-          "date": "2025-01-01",
-          "value": 0.02397689431239436
-        },
-        {
-          "date": "2025-02-01",
-          "value": 0.029203528091388264
-        },
-        {
-          "date": "2025-03-01",
-          "value": 0.031927902426889476
-        },
-        {
-          "date": "2025-04-01",
-          "value": 0.032147159664202674
-        },
-        {
-          "date": "2025-05-01",
-          "value": 0.021972650333935473
-        },
-        {
-          "date": "2025-06-01",
-          "value": 0.017137349662716073
-        },
-        {
-          "date": "2025-07-01",
-          "value": 0.014791483194941168
-        },
-        {
-          "date": "2025-08-01",
-          "value": 0.020449004208132004
-        },
-        {
-          "date": "2025-09-01",
-          "value": 0.01895876192364887
-        },
-        {
-          "date": "2025-10-01",
-          "value": 0.022167187118103504
-        },
-        {
-          "date": "2025-11-01",
-          "value": 0.026389973653884624
-        },
-        {
-          "date": "2025-12-01",
-          "value": 0.03033892113375969
-        },
-        {
-          "date": "2026-01-01",
-          "value": 0.02630369065853122
-        },
-        {
-          "date": "2026-02-01",
-          "value": 0.030753751896320347
-        },
-        {
-          "date": "2026-03-01",
-          "value": 0.031889458451843655
-        },
-        {
-          "date": "2026-04-01",
-          "value": 0.02286474435452468
-        },
-        {
-          "date": "2026-05-01",
-          "value": 0.019034777326863095
-        },
-        {
-          "date": "2026-06-01",
-          "value": 0.015695811790507053
-        },
-        {
-          "date": "2026-07-01",
-          "value": 0.01782174844485196
-        }
-      ]
-    },
     "ipc": {
       "id": "145.3_INGNACUAL_DICI_M_38",
       "title": "IPC nacional",
@@ -152,9 +41,9 @@
       "frequency": "month",
       "url": "https://apis.datos.gob.ar/series/api/series?ids=145.3_INGNACUAL_DICI_M_38&last=180&metadata=full",
       "description": "IPC. Tasa de variación mensual. Nivel General. Nacional. Base dic 2016.",
-      "checked_at": "2026-10-31T00:52:46.257439+00:00",
+      "checked_at": "2026-11-03T02:58:01.562883+00:00",
       "status": "verified",
-      "age_days": 91,
+      "age_days": 94,
       "lag_warning": true,
       "data": [
         {
@@ -263,9 +152,9 @@
       "frequency": "month",
       "url": "https://apis.datos.gob.ar/series/api/series?ids=148.3_IREGULANAL_DICI_M_22&last=180&metadata=full&representation_mode=percent_change",
       "description": "IPC. Regulados Nacional. Base dic 2016. Mensual.",
-      "checked_at": "2026-10-31T00:52:46.668181+00:00",
+      "checked_at": "2026-11-03T02:58:02.111774+00:00",
       "status": "verified",
-      "age_days": 122,
+      "age_days": 125,
       "lag_warning": true,
       "data": [
         {
@@ -366,6 +255,228 @@
         }
       ]
     },
+    "nucleo": {
+      "id": "148.3_INUCLEONAL_DICI_M_19",
+      "title": "IPC núcleo",
+      "unit": "fraction",
+      "source": "INDEC",
+      "frequency": "month",
+      "url": "https://apis.datos.gob.ar/series/api/series?ids=148.3_INUCLEONAL_DICI_M_19&last=180&metadata=full&representation_mode=percent_change",
+      "description": "IPC. Núcleo. Nacional. Base dic 2016. Mensual.",
+      "checked_at": "2026-11-03T02:58:02.178704+00:00",
+      "status": "verified",
+      "age_days": 125,
+      "lag_warning": true,
+      "data": [
+        {
+          "date": "2024-08-01",
+          "value": 0.041202855730913646
+        },
+        {
+          "date": "2024-09-01",
+          "value": 0.03262205751650904
+        },
+        {
+          "date": "2024-10-01",
+          "value": 0.029178168076062105
+        },
+        {
+          "date": "2024-11-01",
+          "value": 0.027148338562957175
+        },
+        {
+          "date": "2024-12-01",
+          "value": 0.03197281506150129
+        },
+        {
+          "date": "2025-01-01",
+          "value": 0.02397689431239436
+        },
+        {
+          "date": "2025-02-01",
+          "value": 0.029203528091388264
+        },
+        {
+          "date": "2025-03-01",
+          "value": 0.031927902426889476
+        },
+        {
+          "date": "2025-04-01",
+          "value": 0.032147159664202674
+        },
+        {
+          "date": "2025-05-01",
+          "value": 0.021972650333935473
+        },
+        {
+          "date": "2025-06-01",
+          "value": 0.017137349662716073
+        },
+        {
+          "date": "2025-07-01",
+          "value": 0.014791483194941168
+        },
+        {
+          "date": "2025-08-01",
+          "value": 0.020449004208132004
+        },
+        {
+          "date": "2025-09-01",
+          "value": 0.01895876192364887
+        },
+        {
+          "date": "2025-10-01",
+          "value": 0.022167187118103504
+        },
+        {
+          "date": "2025-11-01",
+          "value": 0.026389973653884624
+        },
+        {
+          "date": "2025-12-01",
+          "value": 0.03033892113375969
+        },
+        {
+          "date": "2026-01-01",
+          "value": 0.02630369065853122
+        },
+        {
+          "date": "2026-02-01",
+          "value": 0.030753751896320347
+        },
+        {
+          "date": "2026-03-01",
+          "value": 0.031889458451843655
+        },
+        {
+          "date": "2026-04-01",
+          "value": 0.02286474435452468
+        },
+        {
+          "date": "2026-05-01",
+          "value": 0.019034777326863095
+        },
+        {
+          "date": "2026-06-01",
+          "value": 0.015695811790507053
+        },
+        {
+          "date": "2026-07-01",
+          "value": 0.01782174844485196
+        }
+      ]
+    },
+    "emae_original": {
+      "id": "143.3_NO_PR_2004_A_21",
+      "title": "EMAE original",
+      "unit": "index",
+      "source": "INDEC",
+      "frequency": "month",
+      "url": "https://apis.datos.gob.ar/series/api/series?ids=143.3_NO_PR_2004_A_21&last=180&metadata=full",
+      "description": "EMAE. Base 2004",
+      "checked_at": "2026-11-03T02:58:03.800109+00:00",
+      "status": "verified",
+      "age_days": 125,
+      "lag_warning": true,
+      "data": [
+        {
+          "date": "2024-08-01",
+          "value": 147.28124857343758
+        },
+        {
+          "date": "2024-09-01",
+          "value": 144.79669869183633
+        },
+        {
+          "date": "2024-10-01",
+          "value": 148.10394119484172
+        },
+        {
+          "date": "2024-11-01",
+          "value": 148.1787292147409
+        },
+        {
+          "date": "2024-12-01",
+          "value": 148.67761603839233
+        },
+        {
+          "date": "2025-01-01",
+          "value": 146.49668268147974
+        },
+        {
+          "date": "2025-02-01",
+          "value": 141.40461912850864
+        },
+        {
+          "date": "2025-03-01",
+          "value": 150.61008581723874
+        },
+        {
+          "date": "2025-04-01",
+          "value": 158.93908938324
+        },
+        {
+          "date": "2025-05-01",
+          "value": 165.07455518205356
+        },
+        {
+          "date": "2025-06-01",
+          "value": 156.7892018243336
+        },
+        {
+          "date": "2025-07-01",
+          "value": 153.77116990425543
+        },
+        {
+          "date": "2025-08-01",
+          "value": 150.37619425875818
+        },
+        {
+          "date": "2025-09-01",
+          "value": 151.70419952434997
+        },
+        {
+          "date": "2025-10-01",
+          "value": 152.83405327528675
+        },
+        {
+          "date": "2025-11-01",
+          "value": 147.96987570063345
+        },
+        {
+          "date": "2025-12-01",
+          "value": 153.85227192618612
+        },
+        {
+          "date": "2026-01-01",
+          "value": 149.48602043206023
+        },
+        {
+          "date": "2026-02-01",
+          "value": 139.34303476491058
+        },
+        {
+          "date": "2026-03-01",
+          "value": 160.23744803364747
+        },
+        {
+          "date": "2026-04-01",
+          "value": 162.3029965582245
+        },
+        {
+          "date": "2026-05-01",
+          "value": 166.26832998733488
+        },
+        {
+          "date": "2026-06-01",
+          "value": 161.7041890303425
+        },
+        {
+          "date": "2026-07-01",
+          "value": 151.5541509337364
+        }
+      ]
+    },
     "emae": {
       "id": "143.3_NO_PR_2004_A_31",
       "title": "EMAE desestacionalizado",
@@ -374,9 +485,9 @@
       "frequency": "month",
       "url": "https://apis.datos.gob.ar/series/api/series?ids=143.3_NO_PR_2004_A_31&last=180&metadata=full",
       "description": "EMAE desestacionalizado. Base 2004",
-      "checked_at": "2026-10-31T00:52:47.122857+00:00",
+      "checked_at": "2026-11-03T02:58:03.997185+00:00",
       "status": "verified",
-      "age_days": 122,
+      "age_days": 125,
       "lag_warning": true,
       "data": [
         {
@@ -485,15 +596,11 @@
       "frequency": "day",
       "url": "https://api.bcra.gob.ar/estadisticas/v4.0/Monetarias/5?limit=1000",
       "description": "Tipo de cambio mayorista de referencia",
-      "checked_at": "2026-10-31T00:52:47.494368+00:00",
+      "checked_at": "2026-11-03T02:58:04.392253+00:00",
       "status": "verified",
       "age_days": 1,
       "lag_warning": false,
       "data": [
-        {
-          "date": "2026-09-28",
-          "value": 1528.7563
-        },
         {
           "date": "2026-09-29",
           "value": 1523.9697
@@ -585,117 +692,10 @@
         {
           "date": "2026-10-30",
           "value": 1537.3487
-        }
-      ]
-    },
-    "emae_original": {
-      "id": "143.3_NO_PR_2004_A_21",
-      "title": "EMAE original",
-      "unit": "index",
-      "source": "INDEC",
-      "frequency": "month",
-      "url": "https://apis.datos.gob.ar/series/api/series?ids=143.3_NO_PR_2004_A_21&last=180&metadata=full",
-      "description": "EMAE. Base 2004",
-      "checked_at": "2026-10-31T00:52:47.982949+00:00",
-      "status": "verified",
-      "age_days": 122,
-      "lag_warning": true,
-      "data": [
-        {
-          "date": "2024-08-01",
-          "value": 147.28124857343758
         },
         {
-          "date": "2024-09-01",
-          "value": 144.79669869183633
-        },
-        {
-          "date": "2024-10-01",
-          "value": 148.10394119484172
-        },
-        {
-          "date": "2024-11-01",
-          "value": 148.1787292147409
-        },
-        {
-          "date": "2024-12-01",
-          "value": 148.67761603839233
-        },
-        {
-          "date": "2025-01-01",
-          "value": 146.49668268147974
-        },
-        {
-          "date": "2025-02-01",
-          "value": 141.40461912850864
-        },
-        {
-          "date": "2025-03-01",
-          "value": 150.61008581723874
-        },
-        {
-          "date": "2025-04-01",
-          "value": 158.93908938324
-        },
-        {
-          "date": "2025-05-01",
-          "value": 165.07455518205356
-        },
-        {
-          "date": "2025-06-01",
-          "value": 156.7892018243336
-        },
-        {
-          "date": "2025-07-01",
-          "value": 153.77116990425543
-        },
-        {
-          "date": "2025-08-01",
-          "value": 150.37619425875818
-        },
-        {
-          "date": "2025-09-01",
-          "value": 151.70419952434997
-        },
-        {
-          "date": "2025-10-01",
-          "value": 152.83405327528675
-        },
-        {
-          "date": "2025-11-01",
-          "value": 147.96987570063345
-        },
-        {
-          "date": "2025-12-01",
-          "value": 153.85227192618612
-        },
-        {
-          "date": "2026-01-01",
-          "value": 149.48602043206023
-        },
-        {
-          "date": "2026-02-01",
-          "value": 139.34303476491058
-        },
-        {
-          "date": "2026-03-01",
-          "value": 160.23744803364747
-        },
-        {
-          "date": "2026-04-01",
-          "value": 162.3029965582245
-        },
-        {
-          "date": "2026-05-01",
-          "value": 166.26832998733488
-        },
-        {
-          "date": "2026-06-01",
-          "value": 161.7041890303425
-        },
-        {
-          "date": "2026-07-01",
-          "value": 151.5541509337364
+          "date": "2026-11-02",
+          "value": 1544.6507
         }
       ]
     }
